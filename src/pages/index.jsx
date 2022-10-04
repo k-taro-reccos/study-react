@@ -7,12 +7,26 @@ import styles from "src/styles/Home.module.css";
 
 export default function Home() {
   const [count, setCount] = useState(1);
+  const [text, setText] = useState("");
+  const [isShow, setIsShow] = useState(true);
 
   const handleClick = useCallback(() => {
     if (count < 10) {
       setCount((count) => count + 1);
     }
   }, [count]);
+
+  const handleDisplay = useCallback(() => {
+    setIsShow((isShow) => !isShow);
+  }, []);
+
+  const handleChange = useCallback((e) => {
+    if (e.target.value.length > 5) {
+      alert("5文字以内にしてください");
+      return;
+    }
+    setText(e.target.value.trim());
+  }, []);
 
   useEffect(() => {
     document.body.style.backgroundColor = "lightblue";
@@ -30,12 +44,13 @@ export default function Home() {
       </Head>
 
       <Header />
-      <p>{count}</p>
-      <button href="/about" onClick={handleClick}>
-        ボタン
-      </button>
+      {isShow && <p>{count}</p>}
+      <button onClick={handleClick}>ボタン</button>
+      <br />
+      <button onClick={handleDisplay}>{isShow ? "非表示" : "表示"}</button>
+      <br />
+      <input type="text" value={text} onChange={handleChange} />
       <Main page="index" />
-
       <Footer />
     </div>
   );
