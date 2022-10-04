@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { Footer } from "src/components/Footer";
 import { Header } from "src/components/Header";
 import { Main } from "src/components/Main";
@@ -11,6 +11,16 @@ export default function Home() {
       e.preventDefault()
   }, [])
 
+  useEffect(() => {
+    console.log('マウント時')
+    document.body.style.backgroundColor = 'lightblue'
+    
+    return () => {
+      console.log('アンマウント時')
+      document.body.style.backgroundColor = ''
+    }
+  }, [])
+
   return (
     <div className={styles.container}>
       <Head>
@@ -19,9 +29,9 @@ export default function Home() {
       </Head>
 
       <Header />
-      <a href="/about" onClick={handleClick}>
+      {/* <a href="/about" onClick={handleClick}>
         ボタン
-      </a>
+      </a> */}
       <Main page="index" />
 
       <Footer />
