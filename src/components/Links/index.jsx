@@ -1,7 +1,9 @@
 import { useCallback, useState } from "react";
 import classes from "src/components/Links/Links.module.css";
 
-export function Links({items, handleReduce}) {
+export const Links = (props) => {
+  const { items } = props;
+  
   return (
     <div className={classes.grid}>
       {items.map((item) => (
@@ -12,4 +14,4 @@ export function Links({items, handleReduce}) {
       ))}
     </div>
   );
-}
+};
