@@ -1,20 +1,20 @@
 import Head from "next/head";
-import { Footer } from "src/components/Footer";
+import { useCallback, useEffect, useState } from "react";
 import { Header } from "src/components/Header";
-import { Main } from "src/components/Main";
 import styles from "src/styles/Home.module.css";
 
-const Home = (props) => {
-  const {
-    count,
-    isShow,
-    handleClick,
-    handleDisplay,
-    text,
-    array,
-    handleChange,
-    handleAdd,
-  } = props;
+const Home = () => {
+  const [posts, setPosts] = useState([]);
+
+  const getPosts = useCallback(async () => {
+    const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+    const json = await res.json();
+    setPosts(json);
+  }, []);
+
+  useEffect(() => {
+    getPosts();
+  }, [getPosts]);
 
   return (
     <div className={styles.container}>
@@ -25,22 +25,13 @@ const Home = (props) => {
 
       <Header />
 
-      {isShow && <p>{count}</p>}
-      <button onClick={handleClick}>ボタン</button>
-      <br />
-      <button onClick={handleDisplay}>{isShow ? "非表示" : "表示"}</button>
-
-      <br />
-      <input type="text" value={text} onChange={handleChange} />
-      <br />
-      <button onClick={handleAdd}>追加</button>
-      <ul>
-        {array.map((item) => (
-          <li key={item}>{item}</li>
-        ))}
-      </ul>
-      <Main page="index" />
-      <Footer />
+      {posts.length > 0 ? (
+        <ol>
+          {posts.map((post) => (
+            <li key={post.id}>{post.title}</li>
+          ))}
+        </ol>
+      ) : null}
     </div>
   );
 };
