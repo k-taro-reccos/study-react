@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { fetcher } from "src/utils/fetcher";
 import useSWR from "swr";
 
@@ -25,4 +24,12 @@ export const usePosts = () => {
 
 export const useUsers = () => {
   return useFetchArray(`${API_URL}/users`)
+}
+
+export const useCommentsByPostsId = (id) => {
+  return useFetchArray(id ? `${API_URL}/comments?postId=${id}` : null)
+}
+
+export const usePostsByUserId = (id) => {
+  return useFetchArray(id ? `${API_URL}/posts?userId=${id}` : null)
 }
