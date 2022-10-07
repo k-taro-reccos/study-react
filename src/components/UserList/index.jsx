@@ -1,14 +1,14 @@
 import Link from "next/link";
-import {  useUsers } from "src/hooks/useUsers";
+import { useUsers } from "src/hooks/useFetchArray";
 
 export const UserList = () => {
-  const { users, usersError, isLoading, isEmpty } = useUsers();
+  const { data, error, isLoading, isEmpty } = useUsers();
 
   if (isLoading) {
     return <div>ローディング中です</div>;
   }
 
-  if (usersError) {
+  if (error) {
     return <div>{error.message}</div>;
   }
 
@@ -18,7 +18,7 @@ export const UserList = () => {
 
   return (
     <ol>
-      {users.map((user) => (
+      {data.map((user) => (
         <li key={user.id}>
           <Link href={`/users/${user.id}`}>
             <a>{`${user.name} (${user.email})`}</a>

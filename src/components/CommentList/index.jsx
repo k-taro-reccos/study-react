@@ -1,14 +1,14 @@
 import Link from "next/link";
-import { useComments } from "src/hooks/useComments";
+import { useComments } from "src/hooks/useFetchArray";
 
 export const CommentList = () => {
-  const { comments, commentsError, isLoading, isEmpty } = useComments();
+  const { data, error, isLoading, isEmpty } = useComments();
 
   if (isLoading) {
     return <div>ローディング中です</div>;
   }
 
-  if (commentsError) {
+  if (error) {
     return <div>{error.message}</div>;
   }
 
@@ -18,7 +18,7 @@ export const CommentList = () => {
 
   return (
     <ol>
-      {comments.map((comment) => (
+      {data.map((comment) => (
         <li key={comment.id}>
           <Link href={`/comments/${comment.id}`}>
             <a>{comment.name}</a>
