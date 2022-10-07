@@ -1,6 +1,5 @@
 import Head from "next/head";
-import { PostByUserId } from "src/components/Posts/PostsByUserId";
-import { UserById } from "src/components/User/UserById";
+import { PostByCommentId } from "src/components/Post/PostByCommentId";
 import { useComment } from "src/hooks/useComment";
 
 export const Comment = () => {
@@ -21,8 +20,8 @@ export const Comment = () => {
       </Head>
       <h1>{data.name}</h1>
       <p>{data.body}</p>
-      <UserById id={data.id} />
-      <PostByUserId id={data.id} />
+      <h2>元の記事</h2>
+      <PostByCommentId id={data.postId} />
     </div>
   );
 };
