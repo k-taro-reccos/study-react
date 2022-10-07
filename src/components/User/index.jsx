@@ -31,8 +31,6 @@ export const User = () => {
       </ul>
       <h2>投稿</h2>
       <PostByUserId id={data.id} />
-      <h2>コメント</h2>
-      <CommentsByPostId id={data.id} />
     </div>
   );
 };
