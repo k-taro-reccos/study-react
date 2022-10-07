@@ -13,7 +13,7 @@ const Home = () => {
 
       <Header />
 
-    <Posts />
+      <Posts />
     </div>
   );
 };
