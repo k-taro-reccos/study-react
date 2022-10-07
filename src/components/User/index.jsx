@@ -1,4 +1,6 @@
 import Head from "next/head";
+import { CommentsByPostId } from "src/components/CommentList/CommentsByPostId";
+import { PostByUserId } from "src/components/Posts/PostsByUserId";
 import { useUser } from "src/hooks/useUser";
 
 export const User = () => {
@@ -17,7 +19,8 @@ export const User = () => {
       <Head>
         <title>{data.name}</title>
       </Head>
-      <h1>{data.name}</h1>
+      <h2>詳細</h2>
+      <p>{data.name}</p>
       <ul>
         <li>{data.username}</li>
         <li>{data.email}</li>
@@ -26,6 +29,10 @@ export const User = () => {
         <li>{data.website}</li>
         <li>{data.company.name}</li>
       </ul>
+      <h2>投稿</h2>
+      <PostByUserId id={data.id} />
+      <h2>コメント</h2>
+      <CommentsByPostId id={data.id} />
     </div>
   );
 };
