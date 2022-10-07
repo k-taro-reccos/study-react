@@ -1,7 +1,6 @@
 import Head from "next/head";
 import { Header } from "src/components/Header";
 import { Posts as PostsComponent } from "src/components/Posts";
-import styles from "src/styles/Home.module.css";
 
 const Posts = () => {
   return (
