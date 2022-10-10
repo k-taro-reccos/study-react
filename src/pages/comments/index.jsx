@@ -3,7 +3,6 @@ import { CommentList } from "src/components/CommentList";
 import { Header } from "src/components/Header";
 import { SWRConfig } from "swr";
 
-
 export const getStaticProps = async () => {
   const COMMENTS_API_URL = `https://jsonplaceholder.typicode.com/comments`;
   const comments = await fetch(COMMENTS_API_URL);
