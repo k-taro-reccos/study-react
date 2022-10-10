@@ -1,5 +1,3 @@
-import Head from "next/head";
-import { CommentsByPostId } from "src/components/CommentList/CommentsByPostId";
 import { PostByUserId } from "src/components/Posts/PostsByUserId";
 import { useUser } from "src/hooks/useUser";
 
