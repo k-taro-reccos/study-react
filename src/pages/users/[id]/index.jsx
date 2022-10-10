@@ -1,6 +1,8 @@
 import { Header } from "src/components/Header";
 import { User } from "src/components/User";
+import { resolve } from "styled-jsx/css";
 import { SWRConfig } from "swr";
+
 
 export const getServerSideProps = async (ctx) => {
   const { id } = ctx.query;
