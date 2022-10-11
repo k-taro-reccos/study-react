@@ -9,7 +9,7 @@ export const Comment = () => {
   }
 
   if (error) {
-    return <div>{commnetError.message}</div>;
+    return <div>{error.message}</div>;
   }
 
   return (
